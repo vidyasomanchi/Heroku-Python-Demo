@@ -46,7 +46,7 @@ class Twitter_Analysis():
         tweets_list = api.search_tweets( q="{key}".format(key=keyword) , lang='en')
 
         for tweet in tweets_list:
-            text = tweet._json["full_text"]
+            text = tweet.text
             print(text)
             favourite_count = tweet.favorite_count
             retweet_count = tweet.retweet_count
