@@ -110,7 +110,10 @@ class Twitter_Analysis():
 
         V_score=[]
 
+        print("Dataframe --- >>>",df)
+
         for t in range(len(df)):
+            print("t value ----->>>> ",t)
             if df['compound'][t] >= 0.05 :
                 V_score.append("Positive")
             elif df['compound'][t] <= - 0.05 :
