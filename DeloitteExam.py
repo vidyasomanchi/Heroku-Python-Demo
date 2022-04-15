@@ -98,6 +98,32 @@ class Twitter_Analysis():
         
         return df
 
+    def analyze_tweets(self,df):
+        analyzer = SentimentIntensityAnalyzer()
+
+        df['compound'] = [analyzer.polarity_scores(x)['compound'] for x in df['processed_reviews']]
+        df['neg'] = [analyzer.polarity_scores(x)['neg'] for x in df['processed_reviews']]
+        df['neu'] = [analyzer.polarity_scores(x)['neu'] for x in df['processed_reviews']]
+        df['pos'] = [analyzer.polarity_scores(x)['pos'] for x in df['processed_reviews']]
+
+        V_score=[]
+
+        for t in range(len(df)):
+            if df['compound'][t] >= 0.05 :
+                V_score.append("Positive")
+            elif df['compound'][t] <= - 0.05 :
+                V_score.append("Negative")
+            else :
+                V_score.append("Neutral")
+
+        df['Sentiment']=V_score
+
+        filename=r'Twitter_{0}.csv'.format('Analyized')
+
+        df.to_csv(filename)
+
+        return df
+
 @app.route('/')
 def my_form():
     return render_template('search.html')
@@ -109,6 +135,7 @@ def show_tables():
     print("Entered keyword is ----->>>>",keyword)#str(input("Enter search word-"))
     twitter_pd = twitter.scrape(keyword)#pd.read_csv(r'Twitter_Analyized.csv')
     twitter_pd = twitter.cleanTxt(twitter_pd,keyword)
+    twitter_pd = twitter.analyze_tweets(twitter_pd)
     return render_template('view.html',tables=[twitter_pd.to_html(classes='report')])
 
 if __name__ == "__main__":
