@@ -101,6 +101,8 @@ class Twitter_Analysis():
     def analyze_tweets(self,df):
         analyzer = SentimentIntensityAnalyzer()
 
+        df.dropna(subset=['processed_reviews'], inplace=True)
+
         df['compound'] = [analyzer.polarity_scores(x)['compound'] for x in df['processed_reviews']]
         df['neg'] = [analyzer.polarity_scores(x)['neg'] for x in df['processed_reviews']]
         df['neu'] = [analyzer.polarity_scores(x)['neu'] for x in df['processed_reviews']]
