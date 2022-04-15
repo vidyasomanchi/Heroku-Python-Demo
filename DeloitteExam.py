@@ -5,7 +5,7 @@ import numpy as np
 import string
 import re
 import nltk
-nltk.download('stopwords')
+#nltk.download('stopwords')
 from nltk.corpus import stopwords
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 #import snscrape.modules.twitter as sntwitter
