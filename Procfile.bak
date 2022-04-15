@@ -1,1 +1,0 @@
-web: gunicorn site_tables_2:app --log-file .
