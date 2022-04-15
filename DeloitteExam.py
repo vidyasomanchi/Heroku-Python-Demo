@@ -138,7 +138,7 @@ def show_tables():
     twitter_pd = twitter.scrape(keyword)#pd.read_csv(r'Twitter_Analyized.csv')
     twitter_pd = twitter.cleanTxt(twitter_pd,keyword)
     twitter_pd = twitter.analyze_tweets(twitter_pd)
-    return render_template('view.html',tables=[twitter_pd.to_html(classes='report')])
+    return render_template('view.html',data=[twitter_pd.to_html(table_id="example")])
 
 if __name__ == "__main__":
     app.run()
