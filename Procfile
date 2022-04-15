@@ -1,1 +1,1 @@
-web: gunicorn site_tables_2:app --log-file -
+web: gunicorn DeloitteExam:app --log-file -
