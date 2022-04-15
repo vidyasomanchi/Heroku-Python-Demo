@@ -43,7 +43,7 @@ class Twitter_Analysis():
         # Creating list to append tweet data
         output = []
 
-        tweets_list = tweepy.Cursor(api.search, q="#{key} since:".format(key=keyword) , lang='en').items()
+        tweets_list = api.search_tweets( q="{key}".format(key=keyword) , lang='en').items()
 
         for tweet in tweets_list:
             text = tweet._json["full_text"]
