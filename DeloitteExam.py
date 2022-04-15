@@ -108,8 +108,8 @@ def show_tables():
     twitter = Twitter_Analysis()
     keyword = request.form['keyword']
     print("Entered keyword is ----->>>>",keyword)#str(input("Enter search word-"))
-    twitter_pd = pd.read_csv(r'Twitter_Analyized.csv')#twitter.scrape(keyword)#pd.read_csv(r'Twitter_Analyized.csv')
-    #twitter_pd = twitter.cleanTxt(twitter_pd,keyword)
+    twitter_pd = twitter.scrape(keyword)#pd.read_csv(r'Twitter_Analyized.csv')
+    twitter_pd = twitter.cleanTxt(twitter_pd,keyword)
     return render_template('view.html',tables=[twitter_pd.to_html(classes='report')])
 
 if __name__ == "__main__":
