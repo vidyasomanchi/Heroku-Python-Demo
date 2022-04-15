@@ -5,7 +5,7 @@ import numpy as np
 import string
 import re
 import nltk
-#nltk.download('stopwords')
+nltk.download('stopwords')
 from nltk.corpus import stopwords
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 #import snscrape.modules.twitter as sntwitter
@@ -47,7 +47,6 @@ class Twitter_Analysis():
 
         for tweet in tweets_list:
             text = tweet.text
-            print(text)
             favourite_count = tweet.favorite_count
             retweet_count = tweet.retweet_count
             created_at = tweet.created_at
