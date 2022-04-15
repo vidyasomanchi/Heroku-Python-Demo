@@ -110,7 +110,7 @@ class Twitter_Analysis():
 
         V_score=[]
 
-        df.reset_index(drop=True)
+        df = df.reset_index()
 
         print("Dataframe --- >>>",df)
 
