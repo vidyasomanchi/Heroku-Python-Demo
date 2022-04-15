@@ -112,10 +112,7 @@ class Twitter_Analysis():
 
         df = df.reset_index()
 
-        print("Dataframe --- >>>",df)
-
         for t in range(len(df)):
-            print("t value ----->>>> ",t)
             if df['compound'][t] >= 0.05 :
                 V_score.append("Positive")
             elif df['compound'][t] <= - 0.05 :
@@ -143,7 +140,7 @@ def show_tables():
     twitter_pd = twitter.scrape(keyword)#pd.read_csv(r'Twitter_Analyized.csv')
     twitter_pd = twitter.cleanTxt(twitter_pd,keyword)
     twitter_pd = twitter.analyze_tweets(twitter_pd)
-    return render_template('view.html',data=[twitter_pd.to_html(table_id="example")])
+    return render_template('view.html',data=twitter_pd.to_html(table_id="example"))
 
 if __name__ == "__main__":
     app.run()
