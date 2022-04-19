@@ -128,11 +128,11 @@ class Twitter_Analysis():
 
         return df
 
-@app.route('/')
+@app.route('/sentiment', methods=['POST'])
 def my_form():
     return render_template('search.html')
 
-@app.route('/', methods=['POST'])
+@app.route('/sentiment', methods=['POST'])
 def show_tables():
     twitter = Twitter_Analysis()
     keyword = request.form['keyword']
@@ -143,5 +143,5 @@ def show_tables():
     return render_template('view.html',data=twitter_pd.to_html(table_id="example"))
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug='True',port='1234')
 
