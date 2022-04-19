@@ -18,10 +18,10 @@ yesterday= today - datetime.timedelta(days=1)
 app = Flask(__name__)
 
 # Twitter
-TWITTER_API_KEY="3iTMZx5ZmEW5KLoQCr7CXat6R"
-TWITTER_API_SECRET="1XHzxw8rhPnPJz4DybRK8H34U7gmwOg7ChMf8i48bjVuduFmZf"
-TWITTER_ACCESS_TOKEN="617154346-ESiFKJXeqS7FP2LHraEd0W0MaM7pNdR32TJXRPWE"
-TWITTER_ACCESS_SECRET="wv9D4fxYdUZlA1LbJcoDOFebDG3F53OECEeqlEuoM3qGp"
+TWITTER_API_KEY="PELBessn7kG0djm0h9Mayg3ch"
+TWITTER_API_SECRET="5mA2J11PKm9u70mPIVZl0lHXYM0aRgdcLET23bKeYpRKmLgicZ"
+TWITTER_ACCESS_TOKEN="617154346-XjarIL9DQYImshVQzpFmK4JIC60SGZDxL6fWpAly"
+TWITTER_ACCESS_SECRET="I3FQAADO3Qyw3ohujDuTCW9LjOYqCzdW8SpMXj3guB2Lx"
 
 # authenticate to twitter using Tweepy
 auth = tweepy.OAuthHandler(TWITTER_API_KEY, TWITTER_API_SECRET)
@@ -128,20 +128,20 @@ class Twitter_Analysis():
 
         return df
 
-@app.route('/sentiment', methods=['POST'])
-def my_form():
+@app.route('/', methods=['POST','GET'])
+def my_form():    
     return render_template('search.html')
 
-@app.route('/sentiment', methods=['POST'])
+@app.route('/sentiment', methods=['POST','GET'])
 def show_tables():
     twitter = Twitter_Analysis()
     keyword = request.form['keyword']
-    print("Entered keyword is ----->>>>",keyword)#str(input("Enter search word-"))
-    twitter_pd = twitter.scrape(keyword)#pd.read_csv(r'Twitter_Analyized.csv')
+    print("Entered keyword is ----->>>>",keyword)
+    twitter_pd = twitter.scrape(keyword)
     twitter_pd = twitter.cleanTxt(twitter_pd,keyword)
     twitter_pd = twitter.analyze_tweets(twitter_pd)
     return render_template('view.html',data=twitter_pd.to_html(table_id="example"))
 
 if __name__ == "__main__":
-    app.run(debug='True',port='1234')
+    app.run(debug='True',port='8088')
 
